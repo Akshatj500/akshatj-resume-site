@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akshat Jindal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Circular+Std&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* sidebar */
+    aside {
+      width: 220px;
+      background: #000;
+      padding: 20px 14px;
+      position: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1DB954;
+      margin-bottom: 24px;
+      padding-left: 8px;
+    }
+
+    aside a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 6px;
+    }
+
+    aside a:hover { color: #fff; background: #1a1a1a; }
+    aside a.active { color: #fff; }
+
+    .divider { height: 1px; background: #282828; margin: 10px 0; }
+
+    .now-playing {
+      margin-top: auto;
+      background: #282828;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+    }
+
+    .now-playing .track { font-weight: 600; margin-bottom: 2px; }
+    .now-playing .sub { color: #aaa; font-size: 12px; }
+
+    /* main */
+    main {
+      margin-left: 220px;
+      padding: 32px;
+      flex: 1;
+      max-width: 900px;
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(to bottom, #1c5c31, #121212);
+      border-radius: 10px;
+      padding: 40px 32px 32px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-end;
+      gap: 24px;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      background: #1DB954;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    .hero-text p { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; color: #ccc; }
+    .hero-text h1 { font-size: 48px; font-weight: 700; line-height: 1.1; margin-bottom: 12px; }
+    .hero-text small { color: #aaa; font-size: 14px; }
+
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1DB954;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .play-btn:hover { background: #1ed760; }
+
+    /* sections */
+    section { margin-bottom: 40px; }
+
+    section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      border-bottom: 1px solid #282828;
+      padding-bottom: 8px;
+    }
+
+    /* tracklist */
+    .track-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 10px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+
+    .track-item:hover { background: #1a1a1a; }
+
+    .track-num {
+      width: 24px;
+      text-align: right;
+      color: #aaa;
+      font-size: 14px;
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .track-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .track-body { flex: 1; }
+    .track-body strong { font-size: 15px; display: block; margin-bottom: 3px; }
+    .track-body span { color: #aaa; font-size: 13px; }
+
+    .track-duration {
+      color: #aaa;
+      font-size: 13px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    /* skill bars */
+    .skill { margin-bottom: 14px; }
+    .skill-label { font-size: 14px; margin-bottom: 5px; display: flex; justify-content: space-between; }
+    .skill-label span { color: #aaa; font-size: 12px; }
+    .bar { height: 4px; background: #282828; border-radius: 2px; }
+    .bar-fill { height: 4px; background: #1DB954; border-radius: 2px; }
+
+    /* education cards */
+    .edu-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 10px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+
+    .edu-item:hover { background: #1a1a1a; }
+
+    .edu-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .edu-body strong { font-size: 15px; display: block; margin-bottom: 3px; }
+    .edu-body span { color: #aaa; font-size: 13px; }
+
+    /* about */
+    .about-box {
+      background: #181818;
+      border-radius: 10px;
+      padding: 24px;
+      line-height: 1.7;
+      color: #ccc;
+      font-size: 15px;
+    }
+
+    .about-box p { margin-bottom: 14px; }
+    .about-box p:last-child { margin-bottom: 0; }
+
+    .tag {
+      display: inline-block;
+      background: #282828;
+      color: #aaa;
+      border-radius: 12px;
+      padding: 3px 10px;
+      font-size: 12px;
+      margin: 3px 2px;
+    }
+
+    /* playbar */
+    .playbar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #181818;
+      border-top: 1px solid #282828;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 13px;
+      color: #aaa;
+      padding: 0 20px;
+    }
+
+    .playbar-track { flex: 1; }
+    .playbar-track strong { display: block; font-size: 13px; color: #fff; }
+    .playbar-track span { font-size: 12px; }
+
+    .playbar-controls { display: flex; gap: 16px; align-items: center; }
+    .pbtn { background: none; border: none; color: #aaa; font-size: 18px; cursor: pointer; }
+    .pbtn:hover { color: #fff; }
+    .pbtn.main { color: #fff; font-size: 22px; }
+
+    .progress { flex: 1; max-width: 300px; height: 3px; background: #535353; border-radius: 2px; }
+    .progress-inner { width: 35%; height: 100%; background: #fff; border-radius: 2px; }
+
+    @media (max-width: 700px) {
+      aside { display: none; }
+      main { margin-left: 0; padding: 20px; }
+      .hero h1 { font-size: 30px; }
+      .avatar { width: 90px; height: 90px; font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<aside>
+  <div class="logo">● Akshat</div>
+  <a href="#" class="active">🏠 Home</a>
+  <a href="#experience">💼 Experience</a>
+  <a href="#skills">⚡ Skills</a>
+  <a href="#education">🎓 Education</a>
+  <a href="#about">👤 About</a>
+  <div class="divider"></div>
+  <a href="mailto:akshat.jindal500@gmail.com">✉️ Email Me</a>
+  <a href="#">📍 Khargone, M.P.</a>
+  <div class="now-playing">
+    <div class="track">Business Manager</div>
+    <div class="sub">Akshat Jindal · Now Playing</div>
+  </div>
+</aside>
+
+<main>
+
+  <div class="hero">
+    <div class="avatar">🌾</div>
+    <div class="hero-text">
+      <p>Profile</p>
+      <h1>Akshat Jindal</h1>
+      <small>Business Manager · IIM Bangalore · Khargone, M.P.</small>
+      <br/>
+      <button class="play-btn">▶ Hire Me</button>
+    </div>
+  </div>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="track-item">
+      <div class="track-num">1</div>
+      <div class="track-icon" style="background:#1a3d22">🏭</div>
+      <div class="track-body">
+        <strong>Intern – Godavariganga Agro Products Pvt. Ltd.</strong>
+        <span>Supervised 2500 TCD sugar plant construction · Sangareddy, Telangana</span><br/>
+        <span>Procurement, vendor negotiations, compliance (FSSAI, Pollution Board, Excise), farmer outreach, hiring</span>
+      </div>
+      <div class="track-duration">Mar 2024 – Present</div>
+    </div>
+
+    <div class="track-item">
+      <div class="track-num">2</div>
+      <div class="track-icon" style="background:#3d2e00">🌿</div>
+      <div class="track-body">
+        <strong>Operations Lead – Savitri Oil Industries</strong>
+        <span>Ginning & Pressing Factory · Nimar Region, Khargone, M.P.</span><br/>
+        <span>Revived a long-shut factory, upgraded machinery, collaborated with CCI for raw cotton procurement</span>
+      </div>
+      <div class="track-duration">2023 – Present</div>
+    </div>
+
+    <div class="track-item">
+      <div class="track-num">3</div>
+      <div class="track-icon" style="background:#3d0f0f">🍱</div>
+      <div class="track-body">
+        <strong>Founder – COVID Relief Meal Initiative</strong>
+        <span>Volunteer-led · Indore, M.P.</span><br/>
+        <span>Served free meals to 100s of isolated patients, partnered with cloud kitchens, mobilized funds</span>
+      </div>
+      <div class="track-duration">Apr – Jul 2021</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+
+    <div class="skill">
+      <div class="skill-label">Strategic Leadership <span>Expert</span></div>
+      <div class="bar"><div class="bar-fill" style="width:90%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Operations Management <span>Expert</span></div>
+      <div class="bar"><div class="bar-fill" style="width:92%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Communication & Negotiation <span>Advanced</span></div>
+      <div class="bar"><div class="bar-fill" style="width:85%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Technical Supervision <span>Advanced</span></div>
+      <div class="bar"><div class="bar-fill" style="width:82%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Advanced Spreadsheet Management <span>Advanced</span></div>
+      <div class="bar"><div class="bar-fill" style="width:80%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">Business Analytics with Python <span>Intermediate</span></div>
+      <div class="bar"><div class="bar-fill" style="width:70%"></div></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+
+    <div class="edu-item">
+      <div class="edu-icon" style="background:#1a2a5c">🎓</div>
+      <div class="edu-body">
+        <strong>Indian Institute of Management Bangalore</strong>
+        <span>Business Management · GPA: 3.5 · Ongoing</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-icon" style="background:#3a1a5c">📚</div>
+      <div class="edu-body">
+        <strong>Emerald Heights International School, Indore</strong>
+        <span>12th Grade: 85% · Best Delegate – International MUN 2020</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-icon" style="background:#1a3a1a">🏫</div>
+      <div class="edu-body">
+        <strong>The Palladian House, Barwaha</strong>
+        <span>10th Grade: 92% · State-Level Snooker Player 🎱</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <div class="about-box">
+      <p>I'm a 21-year-old business student at IIM Bangalore but honestly my real classroom has been the shop floor. I've spent the last few years in my family's agro-enterprise — managing cotton ginning, overseeing sugar plant construction, working directly with farmers, and figuring out everything from regulatory approvals to bank negotiations.</p>
+      <p>I believe you learn the most when the stakes are real. My goal is to build businesses that actually make a difference — not just on paper, but for the farmers and communities involved.</p>
+      <div>
+        <span class="tag">Agri-Business</span>
+        <span class="tag">Operations</span>
+        <span class="tag">Supply Chain</span>
+        <span class="tag">IIM Bangalore</span>
+        <span class="tag">Procurement</span>
+        <span class="tag">akshat.jindal500@gmail.com</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="playbar">
+  <div class="playbar-track">
+    <strong>Akshat Jindal</strong>
+    <span>Business Manager</span>
+  </div>
+  <div class="playbar-controls">
+    <button class="pbtn">⏮</button>
+    <button class="pbtn main">▶</button>
+    <button class="pbtn">⏭</button>
+  </div>
+  <div class="progress">
+    <div class="progress-inner"></div>
+  </div>
+</div>
+
+</body>
+</html>
