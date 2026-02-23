@@ -3,52 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshat Resume</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Akshat's Resume</title>
+    <style>
+        :root {
+            --primary-color: #1DB954;
+            --secondary-color: #191414;
+            --text-color: #FFFFFF;
+            --font-stack: 'Arial', sans-serif;
+        }
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+        }
+        .hero {
+            text-align: center;
+            padding: 2rem;
+        }
+        .experience,
+        .skills,
+        .education,
+        .initiatives {
+            padding: 1rem;
+            border: 1px solid var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem;
+            text-align: left;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            background-color: var(--primary-color);
+            padding: 1rem;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Akshat's Resume</h1>
         <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#initiatives">Initiatives</a>
         </nav>
     </header>
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Detail a short introduction about yourself here.</p>
-        </section>
-        <section id="experience">
-            <h2>Experience</h2>
-            <ul>
-                <li>
-                    <h3>Job Title at Company</h3>
-                    <p>Duration: YYYY-MM - YYYY-MM</p>
-                    <p>Description of responsibilities and achievements.</p>
-                </li>
-                <li>
-                    <h3>Previous Job Title at Previous Company</h3>
-                    <p>Duration: YYYY-MM - YYYY-MM</p>
-                    <p>Description of responsibilities and achievements.</p>
-                </li>
-            </ul>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <ul>
-                <li><a href="project_link">Project Name</a>: Short description of the project.</li>
-                <li><a href="project_link">Another Project</a>: Short description of another project.</li>
-            </ul>
-        </section>
-    </main>
+    <section class="hero">
+        <h1>Akshat</h1>
+        <p>Business Manager, IIM Bangalore</p>
+    </section>
+    <section id="experience" class="experience">
+        <h2>Experience</h2>
+        <table>
+            <tr>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Duration</th>
+            </tr>
+            <tr>
+                <td>Godavariganga</td>
+                <td>Business Manager</td>
+                <td>2020 - Present</td>
+            </tr>
+            <tr>
+                <td>Savitri</td>
+                <td>Operations Head</td>
+                <td>2018 - 2020</td>
+            </tr>
+        </table>
+    </section>
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skill">
+            <span>Management</span>
+            <span class="equalizer">[==========]</span>
+        </div>
+        <div class="skill">
+            <span>Leadership</span>
+            <span class="equalizer">[==========]</span>
+        </div>
+    </section>
+    <section id="initiatives" class="initiatives">
+        <h2>Initiatives</h2>
+        <div class="initiative-card">
+            <h3>Project A</h3>
+            <p>Description of Project A.</p>
+        </div>
+    </section>
+    <section id="education" class="education">
+        <h2>Education</h2>
+        <div>
+            <p>IIM Bangalore, MBA</p>
+        </div>
+    </section>
     <footer>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:your_email@example.com">your_email@example.com</a></p>
+        <p>Contact: akshat@example.com</p>
+        <div class="playbar">[||] Play</div>
     </footer>
 </body>
 </html>
